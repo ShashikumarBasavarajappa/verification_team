@@ -1,0 +1,78 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : Feb 21, 2017, 1:25:04 AM
+    Author     : insbasavar
+*/
+
+/*
+ * Start Bootstrap - Heroic Features (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+body {
+    background-image: url("<%=request.getContextPath() %>/resources/images/back.png");
+}
+.no-background {
+    background-image: url("images/blank.jpg");
+}
+.navbar-inverse {
+    background-color: #34495e;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.navbar {
+    font-size: 16px;
+    min-height: 53px;
+    margin-bottom: 30px;
+    border: none;
+    border-radius: 6px;
+}
+#corbonads{
+    background: whitesmoke;
+    border: 1px solid #ededed;
+    border-bottom: 3px solid #ededed;
+    font-family: 'PT Sans Caption', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    border-radius: 5%;
+}
+#nav_bar_home{
+  width:80%;
+  background-color: #34495e;
+  border-radius: 5  %;
+}
+.login {
+    background: url(../img/login/imac.png) 0 0 no-repeat;
+    background-size: 940px 778px;
+    color: #ffffff;
+    margin-bottom: 77px;
+    padding: 38px 38px 267px;
+    position: relative;
+}
+.login-screen {
+    background-color: #1abc9c;
+    min-height: 473px;
+    padding: 123px 199px 33px 306px;
+}
+.login-icon {
+    left: 200px;
+    position: absolute;
+    top: 160px;
+    width: 96px;
+}
+.login-icon > h4 {
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 34px;
+    opacity: .95;
+}
+.login-form {
+    background-color: #edeff1;
+    padding: 24px 23px 20px;
+    position: relative;
+    border-radius: 6px;
+}
