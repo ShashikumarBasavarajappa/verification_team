@@ -14,7 +14,8 @@
     <link type="text/css" href="<%=request.getContextPath() %>/resources/css/bootstrap/js/bootstrap.min.js" rel="stylesheet"/>
     <link type="text/css" href="<%=request.getContextPath() %>/resources/css/login.css" rel="stylesheet"/>
     <link type="text/css" href="<%=request.getContextPath() %>/resources/css/background.css" rel="stylesheet"/>
-    
+    <link type="text/css" href="<%=request.getContextPath() %>/resources/css/font-awesome.min.css" rel="stylesheet"/>
+
     <script src="<%=request.getContextPath() %>/resources/js/jquery-1.8.3.min.js"></script>
       <script src="<%=request.getContextPath() %>/resources/js/jquery-ui-1.9.2.custom.min.js"></script>
     <script src="<%=request.getContextPath() %>/resources/js/login.js"></script>
@@ -25,7 +26,7 @@
 	<div class="logo">login</div>
 	<!-- Main Form -->
 	<div class="login-form-1">
-		<form id="login-form" class="text-left">
+		<form id="login-form" class="text-left" action="login_page" method="post">
 			<div class="login-form-main-message"></div>
 			<div class="main-login-form">
 				<div class="login-group">
@@ -46,7 +47,7 @@
 			</div>
 			<div class="etc-login-form">
 				<p id="forgot_password">forgot your password? <a href="#">click here</a></p>
-				<p id="new_user">new user? <a href="#">create new account</a></p>
+				<p id="new_user">create new account</a></p>
 			</div>
 		</form>
 	</div>
@@ -58,7 +59,7 @@
 	<div class="logo">register</div>
 	<!-- Main Form -->
 	<div class="login-form-1">
-		<form id="register-form" class="text-left">
+		<form id="register-form" class="text-left" action="registerhome" method="post">
 			<div class="login-form-main-message"></div>
 			<div class="main-login-form">
 				<div class="login-group">
@@ -74,7 +75,7 @@
 						<label for="reg_password_confirm" class="sr-only">Password Confirm</label>
 						<input type="password" class="form-control" id="reg_password_confirm" name="reg_password_confirm" placeholder="confirm password">
 					</div>
-					
+
 					<div class="form-group">
 						<label for="reg_email" class="sr-only">Email</label>
 						<input type="text" class="form-control" id="reg_email" name="reg_email" placeholder="email">
@@ -83,15 +84,15 @@
 						<label for="reg_fullname" class="sr-only">Full Name</label>
 						<input type="text" class="form-control" id="reg_fullname" name="reg_fullname" placeholder="full name">
 					</div>
-					
+
 					<div class="form-group login-group-checkbox">
 						<input type="radio" class="" name="reg_gender" id="male" placeholder="username">
 						<label for="male">male</label>
-						
+
 						<input type="radio" class="" name="reg_gender" id="female" placeholder="username">
 						<label for="female">female</label>
 					</div>
-					
+
 					<div class="form-group login-group-checkbox">
 						<input type="checkbox" class="" id="reg_agree" name="reg_agree">
 						<label for="reg_agree">i agree with <a href="#">terms</a></label>

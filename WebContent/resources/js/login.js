@@ -1,9 +1,18 @@
-$(document).ready(function(){ 
+$(document).ready(function(){
 	$("#registration").hide();
 	$("#forgot_reg_password").hide();
+	$("#forgot_password").click(function(){
+			$("#forgot_reg_password").show();
+			$("#registration").hide();
+	});
+
+	$("#new_user").click(function(){
+			$("#forgot_reg_password").hide();
+			$("#registration").show();
+	});
 (function($) {
     "use strict";
-	
+
 	// Options for Message
 	//----------------------------------------------
   var options = {
@@ -25,23 +34,23 @@ $(document).ready(function(){
     },
   	errorClass: "form-invalid"
   });
-  
+
 	// Form Submission
   $("#login-form").submit(function() {
   	remove_loading($(this));
-		
+
 		if(options['useAJAX'] == true)
 		{
 			// Dummy AJAX request (Replace this with your AJAX code)
 		  // If you don't want to use AJAX, remove this
   	  dummy_submit_form($(this));
-		
+
 		  // Cancel the normal submission.
 		  // If you don't want to use AJAX, remove this
   	  return false;
 		}
   });
-	
+
 	// Register Form
 	//----------------------------------------------
 	// Validation
@@ -77,13 +86,13 @@ $(document).ready(function(){
   // Form Submission
   $("#register-form").submit(function() {
   	remove_loading($(this));
-		
+
 		if(options['useAJAX'] == true)
 		{
 			// Dummy AJAX request (Replace this with your AJAX code)
 		  // If you don't want to use AJAX, remove this
   	  dummy_submit_form($(this));
-		
+
 		  // Cancel the normal submission.
 		  // If you don't want to use AJAX, remove this
   	  return false;
@@ -99,17 +108,17 @@ $(document).ready(function(){
     },
   	errorClass: "form-invalid"
   });
-  
+
 	// Form Submission
   $("#forgot-password-form").submit(function() {
   	remove_loading($(this));
-		
+
 		if(options['useAJAX'] == true)
 		{
 			// Dummy AJAX request (Replace this with your AJAX code)
 		  // If you don't want to use AJAX, remove this
   	  dummy_submit_form($(this));
-		
+
 		  // Cancel the normal submission.
 		  // If you don't want to use AJAX, remove this
   	  return false;
@@ -128,7 +137,7 @@ $(document).ready(function(){
   {
     $form.find('[type=submit]').addClass('clicked').html(options['btn-loading']);
   }
-  
+
   function form_success($form)
   {
 	  $form.find('[type=submit]').addClass('success').html(options['btn-success']);
@@ -149,12 +158,12 @@ $(document).ready(function(){
   	if($form.valid())
   	{
   		form_loading($form);
-  		
+
   		setTimeout(function() {
   			form_success($form);
   		}, 2000);
   	}
   }
-	
+
 })(jQuery);
 });
