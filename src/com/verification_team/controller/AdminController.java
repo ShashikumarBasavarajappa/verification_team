@@ -37,6 +37,19 @@ public class AdminController {
 		model.addObject("printme","SHASHIKUMAR !!");
 		return model;
 	}
+	
+	
+	@RequestMapping(value="/login_page", method = RequestMethod.POST)
+	public ModelAndView login_page(@ModelAttribute("registration") Registration registration) throws IOException{
+
+        //System.out.println("................................" + registration.getReg_email());
+		//regDao.insert(registration);
+		Registration rego = regDao.login_check(registration);
+
+		System.out.println("==========ddd========" +  rego.getReg_username() + "************" +  rego.getReg_password());
+		ModelAndView model = new ModelAndView("login");
+		return model;
+	}
 
 	@RequestMapping(value="/registerhome", method = RequestMethod.POST)
 	public ModelAndView registerhome(@ModelAttribute("registration") Registration registration) throws IOException{

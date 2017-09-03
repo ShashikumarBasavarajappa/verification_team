@@ -7,6 +7,15 @@ public class Registration {
 	String reg_password_confirm;
 	String reg_email;
 	String reg_fullname;
+	
+	public Registration() {
+		// TODO Auto-generated constructor stub
+	}
+	public Registration(String reg_username,  String reg_password) {
+	
+		this.reg_username = reg_username;
+		this.reg_password = reg_password;
+	}
 	public String getReg_username() {
 		return reg_username;
 	}
@@ -37,4 +46,11 @@ public class Registration {
 	public void setReg_fullname(String reg_fullname) {
 		this.reg_fullname = reg_fullname;
 	}
+	
+	@Override
+	public String toString() {
+		return "Registration [username=" + reg_username + ", password=" + reg_password 
+				+ "]";
+	}
+
 }

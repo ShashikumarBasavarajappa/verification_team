@@ -2,6 +2,7 @@ package com.verification_team.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.sql.DataSource;
@@ -45,5 +46,41 @@ public class JdbcRegisterDAO  implements RegisterDAO{
 		}
 	}
 
-
+	@Override
+	public Registration login_check(Registration registration) {
+		// TODO Auto-generated method stub
+		
+		String sql = "SELECT * FROM USERS WHERE  USERNAME = ?";
+		
+		Connection conn = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, registration.getReg_username());
+			Registration reg = null;
+			ResultSet rs = ps.executeQuery();
+			//System.out.println("=============AMMA ====== " + rs.getString("USERNAME") );
+		
+			if (rs.next()) {
+				reg = new Registration(
+						rs.getString("USERNAME"),
+						rs.getString("PASSWORD")
+				);
+			}
+		
+			rs.close();
+			ps.close();
+			return reg;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			if (conn != null) {
+				try {
+				conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+		
+	}
 }
