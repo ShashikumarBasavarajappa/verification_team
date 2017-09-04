@@ -81,14 +81,26 @@ public class AdminController {
 		
 		
 		List<Verification_date> rego = regDao.verification_data_list(username);
+	
+		System.out.println("****************6666666666666666" +  username);
+		String staffname = username.trim();
+		String fooString2 = new String("ladmin");
+		if(username.trim().equals(fooString2) || username.trim() == fooString2 || username.trim().equals("ladmin")){
+			ModelAndView model = new ModelAndView("admin_jsp");
+			model.addObject("main_user_name", username);
+		    model.addObject("verification_data", rego);
+		    
+			return model;
+		}
+		else{
+			ModelAndView model = new ModelAndView("welcome");
+			model.addObject("main_user_name", username);
+		    model.addObject("verification_data", rego);
+		    
+			return model;
+		}
 		
-		ModelAndView model = new ModelAndView("welcome");
-		
-		
-	    model.addObject("main_user_name", username);
-	    model.addObject("verification_data", rego);
 	    
-		return model;
 	}
 
 	@RequestMapping(value="/submit_my_data", method = RequestMethod.POST)
