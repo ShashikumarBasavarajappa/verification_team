@@ -20,8 +20,9 @@
     <script src="<%=request.getContextPath() %>/resources/js/jquery-1.8.3.min.js"></script>
       <script src="<%=request.getContextPath() %>/resources/js/jquery-ui-1.9.2.custom.min.js"></script>
     <script src="<%=request.getContextPath() %>/resources/js/welcome.js"></script>
+    
+    <script src="<%=request.getContextPath() %>/resources/js/jquery.min.js"></script>
     <script src="<%=request.getContextPath() %>/resources/js/popup.js"></script>
-
     </head>
 
 <body>
@@ -76,7 +77,7 @@
     <button class="btn btn-danger navbar-btn" id="archive_user">Download Excel</button>
 
 <div >	
-	    <buton type="button" class="btn btn-info btn-lg" id="add_cas_applicant">
+	    <buton type="button" class="btn btn-info btn-lg" id="myBtn">
           <span class="glyphicon glyphicon-plus"></span> ADD  CAS APPLICANT 
         </button>
 </div>
@@ -130,5 +131,87 @@
        </div>
 
 </form>
-</body>
+	
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><strong><b>CAS VRIFICATION APPLICANT</b></strong></h4>
+        </div>
+        <div class="modal-body">
+          <form id="Applicant_submit" method="post" action="submit_my_data" role="form">
+
+    <div class="messages"></div>
+<input type="hidden" value="${main_user_name}" name="username" readonly="true"> 
+    <div class="controls">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="form_name">CAS ID </label>
+                    <input id="form_name" type="text" name="cas_id" class="form-control" placeholder="Please	 enter your CAS_ID" required="required" data-error="Firstname is required.">
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="form_lastname">Start date </label>
+                    <input id="form_lastname" type="text" name="start_date" class="form-control" placeholder="Please enter your start date *" required="required" data-error="Lastname is required.">
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="form_email">End Date</label>
+                    <input id="form_email" name="end_date" class="form-control" placeholder="Please enter your end date *" required="required" data-error="Valid email is required.">
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                <label for="form_status">Applicant Status</label>                   
+                    <select name="applicant_status">
+					  <option value="verified">verified</option>
+					  <option value="not verified">Not verified</option>
+					</select>
+					<div class="help-block with-errors"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <input type="submit" class="btn btn-success btn-send" value="Submit Applicant">
+            </div>
+        </div>
+       </div>
+
+</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+
+
+
+<script>
+$(document).ready(function(){
+    $("#myBtn").click(function(){
+        $("#myModal").modal();
+    });
+});
+</script>
+</body>	
 </html>
