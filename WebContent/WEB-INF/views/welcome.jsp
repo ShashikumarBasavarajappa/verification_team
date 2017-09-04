@@ -26,6 +26,8 @@
     </head>
 
 <body>
+
+<c:set var="contextPath" value="verification_team"/>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <ul class="nav navbar-nav">
@@ -74,7 +76,8 @@
 </table>
 
 <br />
-    <button class="btn btn-danger navbar-btn" id="archive_user">Download Excel</button>
+
+    <a href="download_excel_data/${main_user_name}"><button class="btn btn-danger navbar-btn" id="archive_user">Download Excel</button>
 
 <div >	
 	    <buton type="button" class="btn btn-info btn-lg" id="myBtn">
