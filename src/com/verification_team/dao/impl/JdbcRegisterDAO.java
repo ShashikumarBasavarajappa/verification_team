@@ -172,4 +172,83 @@ public class JdbcRegisterDAO  implements RegisterDAO{
 			}
 		}
 
+	@Override
+	public List<Registration> verification_employees_data_list() {
+		System.out.println("99999999999999999999************ i'm ok inside tht new sub routioner0000000");
+		String sql = "SELECT * FROM USERS where USERNAME !='ladmin'";
+		
+		Connection conn = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			//Verification_date vv = null;
+			List<Registration> vv222 = new ArrayList<Registration>();
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				
+				Registration employee = new Registration();
+			
+					System.out.println("*******ddddd***************" + rs.getString("USERNAME"));
+				employee.setReg_username(rs.getString("USERNAME"));
+				employee.setReg_password(rs.getString("PASSWORD"));
+				vv222.add(employee);
+			}
+			
+			rs.close();
+			ps.close();
+			System.out.println("******************" + vv222.size());
+			return vv222;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			if (conn != null) {
+				try {
+				conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+	}
+
+	@Override
+	public List<Verification_date> verification_employees_data_list_data() {
+		String sql = "SELECT * FROM VERIFICATION_DATE";
+		
+		Connection conn = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			//Verification_date vv = null;
+			List<Verification_date> vv222 = new ArrayList<Verification_date>();
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				
+				Verification_date employee = new Verification_date();
+				employee.setUsername(rs.getString("USERNAME"));
+				employee.setCas_id(rs.getString("CAS_ID"));
+				employee.setStart_date(rs.getString("START_DATE"));
+				employee.setEnd_date(rs.getString("END_DATE"));
+				employee.setApplicant_status(rs.getString("APPLICANT_STATUS"));
+				
+				vv222.add(employee);
+			}
+			
+			rs.close();
+			ps.close();
+			System.out.println("******************" + vv222.size());
+			return vv222;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			if (conn != null) {
+				try {
+				conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+	}
+
 }

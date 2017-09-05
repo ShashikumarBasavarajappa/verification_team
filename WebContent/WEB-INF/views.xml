@@ -5,5 +5,5 @@
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
      
     <bean id="excelView" class="com.verification_team.controller.ExcelBuilder" />
-     
+     <bean id="admin_excelView"  class="com.verification_team.controller.AdminExcelBuilder" />
 </beans>

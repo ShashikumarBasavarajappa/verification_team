@@ -77,9 +77,11 @@
     
 </div>
 	<div class="container">
+	<a  href="download_excel_data_for_admin/${main_user_name}">
 		<buton type="button" class="btn btn-info btn-lg" id="myBtn">
           <span class="glyphicon glyphicon-download"></span> Download Todays Data
         </button>
+      </a>
 	</div>
 </body>
 </html>

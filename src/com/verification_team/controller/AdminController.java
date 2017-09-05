@@ -119,8 +119,6 @@ public class AdminController {
 		///String username  =  req.getParameter("username");		
        List<Verification_date> rego = regDao.verification_data_list(username);
    	List<Verification_date> listBooks = new ArrayList<Verification_date>();
-	listBooks.add(new Verification_date("Effective Java", "Joshua Bloch", "0321356683","May 28, 2008", "dasdsad"));
-	listBooks.add(new Verification_date("Head First Java", "Kathy Sierra & Bert Bates","0596009208", "February 9, 2005", "dsadsad"));
 	
 	// return a view which will be resolved by an excel view resolver
 	return new ModelAndView("excelView", "listBooks", rego);
@@ -143,5 +141,28 @@ public class AdminController {
       httpSession.invalidate();
          return "redirect:/";
   }
+	 
+	 
+	 
+	 @RequestMapping(value="/download_excel_data_for_admin/{username}",method = RequestMethod.GET)
+		public ModelAndView download_excel_data_for_admin(HttpSession session,HttpServletRequest request, HttpServletResponse response,@PathVariable String username) throws ServletRequestBindingException {
+			System.out.println("*******************" + username);
+			//return new ModelAndView("AnimalListExcel", "animalList", animalList);
+			///String username  =  req.getParameter("username");		
+	       List<Verification_date> rego = regDao.verification_data_list(username);
+	   	List<Verification_date> listBooks = new ArrayList<Verification_date>();
+	    List<Registration> regoe = regDao.verification_employees_data_list();
+	    List<Verification_date> regoe2 = regDao.verification_employees_data_list_data();
+	    
+	    
+	    System.out.println("00000dshdsfjfdjdds" + regoe.size());
+		
+		// return a view which will be resolved by an excel view resolver
+	    ModelAndView model = new ModelAndView("admin_excelView");
+		model.addObject("listBooks", rego);
+		model.addObject("listBooks11", regoe2);
+		
+		return model;
+		}
 
 }
