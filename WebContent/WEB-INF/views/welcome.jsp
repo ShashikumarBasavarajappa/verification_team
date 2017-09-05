@@ -77,7 +77,7 @@
 
 <br />
 
-    <a href="download_excel_data/${main_user_name}"><button class="btn btn-danger navbar-btn" id="archive_user">Download Excel</button>
+    <a href="download_excel_data/${main_user_name}"><button class="btn btn-danger navbar-btn" id="archive_user">Download Excel</button></a>
 
 <div >	
 	    <buton type="button" class="btn btn-info btn-lg" id="myBtn">

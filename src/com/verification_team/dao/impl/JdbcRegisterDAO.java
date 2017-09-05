@@ -191,8 +191,7 @@ public class JdbcRegisterDAO  implements RegisterDAO{
 				Registration employee = new Registration();
 			
 					System.out.println("*******ddddd***************" + rs.getString("USERNAME"));
-				employee.setReg_username(rs.getString("USERNAME"));
-				employee.setReg_password(rs.getString("PASSWORD"));
+				     employee.setReg_username(rs.getString("USERNAME"));
 				vv222.add(employee);
 			}
 			

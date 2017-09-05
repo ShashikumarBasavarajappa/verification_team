@@ -78,20 +78,16 @@ public class AdminExcelBuilder extends AbstractExcelView {
          
         header.createCell(4).setCellValue("END");
         header.getCell(4).setCellStyle(style2);
-         
-        header.createCell(5).setCellValue("APP 1");
-        header.getCell(5).setCellStyle(style2);
+       
+        for(int i=5;i<28;i++){
+        
+        header.createCell(i).setCellValue("APP " + i);
+        header.getCell(i).setCellStyle(style2);
         
         header.createCell(6).setCellValue("");
-        header.getCell(6).setCellStyle(style2);
-
-        header.createCell(7).setCellValue("APP 2");
-        header.getCell(7).setCellStyle(style2);
-        
-        header.createCell(8).setCellValue("");
-        header.getCell(8).setCellStyle(style2);
-
-        
+        header.getCell(i).setCellStyle(style2);
+        }
+               
         HSSFRow header1 = sheet.createRow(1);
         
         header1.createCell(0).setCellValue("NAME");
@@ -110,30 +106,35 @@ public class AdminExcelBuilder extends AbstractExcelView {
         header1.createCell(4).setCellValue("TIME");
         header1.getCell(4).setCellStyle(style2);
 
-        header1.createCell(5).setCellValue("TIME");
-        header1.getCell(5).setCellStyle(style2);
-        
-        header1.createCell(6).setCellValue("DIFFERENCE");
-        header1.getCell(6).setCellStyle(style2);
-        
-        header1.createCell(7).setCellValue("TIME");
-        header1.getCell(7).setCellStyle(style2);
-        
-        header1.createCell(8).setCellValue("DIFFERENCE");
-        header1.getCell(8).setCellStyle(style2);
 
+        for(int i=5;i<28;i++){
+       
+        header1.createCell(i).setCellValue("TIME");
+        header1.getCell(i).setCellStyle(style2);
+        i++;
+        header1.createCell(i).setCellValue("DIFFERENCE");
+        header1.getCell(i).setCellStyle(style2);
+       } 
+        
        // List<Registration> rego = regDao.verification_employees_data_list();
         // create data rows
         int rowCount = 2;
         
         
        
-         
+         System.out.println("===========aD=SA=D=SA=D=SA=D=" + listBooks.size());
         for (Registration aBook : listBooks) {
             HSSFRow aRow = sheet.createRow(rowCount++);
             int count = 1;
+            int Applicant_count = 0;
+            for (Verification_date aBook1 : listBooks22) {
+            	
+        		if(aBook1.getUsername().trim().equals(aBook.getReg_username().trim()) || aBook1.getUsername().trim() == aBook.getReg_username().trim() ||  aBook1.getUsername().trim().equals(aBook.getReg_username().trim())){
+        			Applicant_count ++;
+        }
+    }
             aRow.createCell(0).setCellValue(aBook.getReg_username());
-            aRow.createCell(count++).setCellValue("13");
+            aRow.createCell(count++).setCellValue(Applicant_count);
             aRow.createCell(count++).setCellValue(".36");
             aRow.createCell(count++).setCellValue("12-12-2016");
             aRow.createCell(count++).setCellValue("12323213");
@@ -151,11 +152,7 @@ public class AdminExcelBuilder extends AbstractExcelView {
             	
         }
         
-        for (Verification_date aBook : listBooks22) {
-            HSSFRow aRow = sheet.createRow(rowCount++);
-            aRow.createCell(0).setCellValue(aBook.getUsername());
 
-        }
     }
  
 }

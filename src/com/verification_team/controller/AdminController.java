@@ -150,7 +150,6 @@ public class AdminController {
 			//return new ModelAndView("AnimalListExcel", "animalList", animalList);
 			///String username  =  req.getParameter("username");		
 	       List<Verification_date> rego = regDao.verification_data_list(username);
-	   	List<Verification_date> listBooks = new ArrayList<Verification_date>();
 	    List<Registration> regoe = regDao.verification_employees_data_list();
 	    List<Verification_date> regoe2 = regDao.verification_employees_data_list_data();
 	    
@@ -159,7 +158,7 @@ public class AdminController {
 		
 		// return a view which will be resolved by an excel view resolver
 	    ModelAndView model = new ModelAndView("admin_excelView");
-		model.addObject("listBooks", rego);
+		model.addObject("listBooks", regoe);
 		model.addObject("listBooks11", regoe2);
 		
 		return model;
