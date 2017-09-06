@@ -92,7 +92,7 @@ public class JdbcRegisterDAO  implements RegisterDAO{
 		// TODO Auto-generated method stub
                            																																														
 		String sql = "INSERT INTO VERIFICATION_DATE " +
-				"(USERNAME,CAS_ID, START_DATE, END_DATE,APPLICANT_STATUS) VALUES (?,?, ?, ?,?)";
+				"(USERNAME,CAS_ID, START_DATE, END_DATE,APPLICANT_STATUS,NO_OF_TRANSCRIPTS,PORTAL_NAME) VALUES (?,?, ?, ?,?,?,?)";
 		Connection conn = null;
 
 		try {
@@ -103,6 +103,8 @@ public class JdbcRegisterDAO  implements RegisterDAO{
 			ps.setString(3, verification_data.getStart_date());
 			ps.setString(4, verification_data.getEnd_date());
 			ps.setString(5, verification_data.getApplicant_status());
+			ps.setString(6, verification_data.getNo_of_transcripts());
+			ps.setString(7, verification_data.getPortal_name());
 			ps.executeUpdate();
 			ps.close();
 
@@ -145,6 +147,8 @@ public class JdbcRegisterDAO  implements RegisterDAO{
 					employee.setStart_date(rs.getString("START_DATE"));
 					employee.setEnd_date(rs.getString("END_DATE"));
 					employee.setApplicant_status(rs.getString("APPLICANT_STATUS"));
+					employee.setNo_of_transcripts(rs.getString("NO_OF_TRANSCRIPTS"));
+					employee.setPortal_name(rs.getString("PORTAL_NAME"));;
 					vv.add(employee);
 					/*
 					 vv =   new Verification_date(
@@ -248,6 +252,33 @@ public class JdbcRegisterDAO  implements RegisterDAO{
 				} catch (SQLException e) {}
 			}
 		}
+	}
+
+	@Override
+	public void delete_verification_data(String cas_id) {
+		
+							
+				String sql = "delete from verification_date where cas_id=?";
+				Connection conn = null;
+				
+				try {
+				conn = dataSource.getConnection();
+				PreparedStatement ps = conn.prepareStatement(sql);
+				ps.setString(1, cas_id);
+				ps.executeUpdate();
+				ps.close();
+				
+				} catch (SQLException e) {
+				throw new RuntimeException(e);
+				
+				} finally {
+				if (conn != null) {
+				try {
+				conn.close();
+				} catch (SQLException e) {}
+				}
+}
+
 	}
 
 }

@@ -46,8 +46,8 @@ public class AdminController {
 		model.addObject("printme","SHASHIKUMAR !!");
 		return model;
 	}
-	
-	
+
+
 	@RequestMapping(value="/login_page", method = RequestMethod.POST)
 	public String  login_page(@ModelAttribute("registration") Registration registration,HttpSession session, RedirectAttributes rr) throws IOException{
 
@@ -57,7 +57,8 @@ public class AdminController {
 
 		System.out.println("==========ddd========" +  rego.getReg_username() + "************" +  rego.getReg_password());
 		//ModelAndView model = new ModelAndView("login");
-		//return model
+		//return modelzgi
+		session.setAttribute("username", rego.getReg_username());
 	//	if((registration.getReg_username().equals(rego.getReg_username())) && (registration.getReg_password().equals(rego.getReg_password()))){
 				rr.addAttribute("username", rego.getReg_username());
 				return "redirect:/admin_welcomepage";
@@ -79,9 +80,9 @@ public class AdminController {
 	public ModelAndView admin_welcomepage(HttpServletRequest req, HttpServletResponse response,RedirectAttributes rrr, HttpSession session, RedirectAttributes shashi_session) throws IOException{
 		String username  =  req.getParameter("username");
 		
-		
+
 		List<Verification_date> rego = regDao.verification_data_list(username);
-	
+
 		System.out.println("****************6666666666666666" +  username);
 		String staffname = username.trim();
 		String fooString2 = new String("ladmin");
@@ -89,18 +90,18 @@ public class AdminController {
 			ModelAndView model = new ModelAndView("admin_jsp");
 			model.addObject("main_user_name", username);
 		    model.addObject("verification_data", rego);
-		    
+
 			return model;
 		}
 		else{
 			ModelAndView model = new ModelAndView("welcome");
 			model.addObject("main_user_name", username);
 		    model.addObject("verification_data", rego);
-		    
+
 			return model;
 		}
-		
-	    
+
+
 	}
 
 	@RequestMapping(value="/submit_my_data", method = RequestMethod.POST)
@@ -111,25 +112,25 @@ public class AdminController {
 		rr.addAttribute("username", verification_date.getUsername());
 		return "redirect:/admin_welcomepage";
 	}
-	
+
 	@RequestMapping(value="/download_excel_data/{username}",method = RequestMethod.GET)
 	public ModelAndView getExcel(HttpSession session,HttpServletRequest request, HttpServletResponse response,@PathVariable String username) throws ServletRequestBindingException {
 		System.out.println("*******************" + username);
 		//return new ModelAndView("AnimalListExcel", "animalList", animalList);
-		///String username  =  req.getParameter("username");		
+		///String username  =  req.getParameter("username");
        List<Verification_date> rego = regDao.verification_data_list(username);
    	List<Verification_date> listBooks = new ArrayList<Verification_date>();
-	
+
 	// return a view which will be resolved by an excel view resolver
 	return new ModelAndView("excelView", "listBooks", rego);
 
 /*
 		ModelAndView model = new ModelAndView("welcome");
-		
-		
+
+
 	    model.addObject("main_user_name", username);
 	    model.addObject("verification_data", rego);
-	    
+
 		return model;
 */
 	}
@@ -141,27 +142,41 @@ public class AdminController {
       httpSession.invalidate();
          return "redirect:/";
   }
-	 
-	 
-	 
+
+
+
 	 @RequestMapping(value="/download_excel_data_for_admin/{username}",method = RequestMethod.GET)
 		public ModelAndView download_excel_data_for_admin(HttpSession session,HttpServletRequest request, HttpServletResponse response,@PathVariable String username) throws ServletRequestBindingException {
 			System.out.println("*******************" + username);
 			//return new ModelAndView("AnimalListExcel", "animalList", animalList);
-			///String username  =  req.getParameter("username");		
+			///String username  =  req.getParameter("username");
 	       List<Verification_date> rego = regDao.verification_data_list(username);
 	    List<Registration> regoe = regDao.verification_employees_data_list();
 	    List<Verification_date> regoe2 = regDao.verification_employees_data_list_data();
-	    
-	    
+
+
 	    System.out.println("00000dshdsfjfdjdds" + regoe.size());
-		
+
 		// return a view which will be resolved by an excel view resolver
 	    ModelAndView model = new ModelAndView("admin_excelView");
 		model.addObject("listBooks", regoe);
 		model.addObject("listBooks11", regoe2);
-		
+
 		return model;
+		}
+
+		@RequestMapping(value="/delete_data/{cas_id}",method = RequestMethod.GET)
+		public String delete_data(HttpSession session,HttpServletRequest request, HttpServletResponse response,@PathVariable String cas_id, RedirectAttributes rr) throws ServletRequestBindingException {
+			String username = (String)session.getAttribute("username");
+			System.out.println("9999999999999999999999999999999" + username);
+			//return new ModelAndView("AnimalListExcel", "animalList", animalList);
+			///String username  =  req.getParameter("username");
+	      regDao.delete_verification_data(cas_id);
+
+
+	  	rr.addAttribute("username", username);
+		return "redirect:/admin_welcomepage";
+	
 		}
 
 }

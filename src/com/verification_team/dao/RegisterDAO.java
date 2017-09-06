@@ -15,5 +15,6 @@ public interface RegisterDAO {
 	public List<Verification_date> verification_data_list(String username);
 	public List<Registration> verification_employees_data_list();
 	public List<Verification_date> verification_employees_data_list_data();
-	
+	public void delete_verification_data(String cas_id);
+
 }
