@@ -12,17 +12,28 @@
         <spring:url value="/resources/bootstrap/js/bootstrap.min" var="crunchifyJS" />
     -->
     <link type="text/css" href="<%=request.getContextPath() %>/resources/css/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <link type="text/css" href="<%=request.getContextPath() %>/resources/css/bootstrap/js/bootstrap.min.js" rel="stylesheet"/>
+
     <link type="text/css" href="<%=request.getContextPath() %>/resources/css/login.css" rel="stylesheet"/>
     <link type="text/css" href="<%=request.getContextPath() %>/resources/css/background.css" rel="stylesheet"/>
     <link type="text/css" href="<%=request.getContextPath() %>/resources/css/font-awesome.min.css" rel="stylesheet"/>
 <link type="text/css" href="<%=request.getContextPath() %>/resources/css/popup.css" rel="stylesheet"/>
+<link type="text/css" href="<%=request.getContextPath() %>/resources/css/bootstrap-datetimepicker.css" rel="stylesheet"/>
+
+
     <script src="<%=request.getContextPath() %>/resources/js/jquery-1.8.3.min.js"></script>
+        <script src="<%=request.getContextPath() %>/resources/css/bootstrap/js/bootstrap.min.js"></script>
       <script src="<%=request.getContextPath() %>/resources/js/jquery-ui-1.9.2.custom.min.js"></script>
+   
+        <script src="<%=request.getContextPath() %>/resources/js/bootstrap-datetimepicker.js"></script>
+        
+        
+      
     <script src="<%=request.getContextPath() %>/resources/js/welcome.js"></script>
     
     <script src="<%=request.getContextPath() %>/resources/js/jquery.min.js"></script>
     <script src="<%=request.getContextPath() %>/resources/js/popup.js"></script>
+    
+    
     </head>
 
 <body>
@@ -41,9 +52,10 @@
 
   </div>
 </nav>
-	<h1> welcome to the portal</h1>
+	<h1> Welcome to the Verification Portal</h1>
 	<br />
 	<h2>Total CAS APPLICANTS hours</h2>
+	
 	
 
   <div class="alert alert-warning">
@@ -65,7 +77,7 @@
   <c:forEach items="${verification_data}" var="emp">    
     <tr>
       <td class="table-active">${emp.cas_id}</td>
-      <td class="table-success">10/04/1994 </td>
+      <td class="table-success">9/06/2017 </td>
       <td class="table-danger">${emp.start_date}</td>
       <td class="table-success">${emp.end_date}</td>
       <td class="table-warning">${emp.applicant_status}</td>      
@@ -101,7 +113,7 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="form_lastname">Start date </label>
+                    <label for="form_lastname">Start Time </label>
                     <input id="form_lastname" type="text" name="start_date" class="form-control" placeholder="Please enter your start date *" required="required" data-error="Lastname is required.">
                     <div class="help-block with-errors"></div>
                 </div>
@@ -110,7 +122,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="form_email">End Date</label>
+                    <label for="form_email">End Time</label>
                     <input id="form_email" name="end_date" class="form-control" placeholder="Please enter your end date *" required="required" data-error="Valid email is required.">
                     <div class="help-block with-errors"></div>
                 </div>
@@ -163,7 +175,7 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="form_lastname">Start date </label>
+                    <label for="form_lastname">Start Time </label> <span class="glyphicon glyphicon-time"></span>
                     <input id="form_lastname" type="text" name="start_date" class="form-control" placeholder="Please enter your start date *" required="required" data-error="Lastname is required.">
                     <div class="help-block with-errors"></div>
                 </div>
@@ -172,7 +184,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="form_email">End Date</label>
+                    <label for="form_email">End TIme <span class="glyphicon glyphicon-time"></span></label>
                     <input id="form_email" name="end_date" class="form-control" placeholder="Please enter your end date *" required="required" data-error="Valid email is required.">
                     <div class="help-block with-errors"></div>
                 </div>
@@ -213,6 +225,11 @@
 $(document).ready(function(){
     $("#myBtn").click(function(){
         $("#myModal").modal();
+    });
+    $(function () {
+        $('#datetimepicker3').datetimepicker({
+            format: 'LT'
+        });
     });
 });
 </script>

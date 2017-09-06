@@ -7,7 +7,8 @@ import java.util.Map;
  
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
- 
+
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -15,6 +16,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.view.document.AbstractExcelView;
@@ -48,10 +50,28 @@ public class AdminExcelBuilder extends AbstractExcelView {
         HSSFSheet sheet = workbook.createSheet("CAS APPLICANTS");
         sheet.setDefaultColumnWidth(20);
         sheet.addMergedRegion(new CellRangeAddress(0,0,1,2));
+        
+        HSSFFont headerFont = workbook.createFont();
+        headerFont.setBoldweight(headerFont.BOLDWEIGHT_BOLD);
+        headerFont.setFontHeightInPoints((short) 11);
+        headerFont.setFontName("Calibri");
+        CellStyle headerStyle = workbook.createCellStyle();
+        headerStyle.setFillBackgroundColor(IndexedColors.BROWN.getIndex());
+        headerStyle.setAlignment(headerStyle.ALIGN_CENTER);
+        headerStyle.setFont(headerFont);
+        headerStyle.setBorderBottom(HSSFCellStyle.BORDER_MEDIUM);
+        headerStyle.setBorderTop(HSSFCellStyle.BORDER_MEDIUM);
+        headerStyle.setBorderLeft(HSSFCellStyle.BORDER_MEDIUM);
+        headerStyle.setBorderRight(HSSFCellStyle.BORDER_MEDIUM);
+        
+        
+        
+        
       //  sheet.addMergedRegion(new CellRangeAddress(0,0,5,6));
         for(int i=5;i<48;i++){
         	int my_number = i+1;
         	sheet.addMergedRegion(new CellRangeAddress(0,0,i,my_number));
+        	
         	i=i+1; 
         }
 //        sheet.addMergedRegion(new CellRangeAddress(first row,last_row,first coulmn,last_column));
@@ -63,8 +83,27 @@ public class AdminExcelBuilder extends AbstractExcelView {
 
         CellStyle style2 = workbook.createCellStyle();
         CellStyle style3 = workbook.createCellStyle();
+        CellStyle style4 = workbook.createCellStyle();
         CellStyle center_text = workbook.createCellStyle();
        
+        style4.setBorderRight(HSSFCellStyle.BORDER_MEDIUM);
+
+        
+        style3.setBorderBottom(HSSFCellStyle.BORDER_MEDIUM);
+        style3.setBorderLeft(HSSFCellStyle.BORDER_MEDIUM);
+        style3.setBorderRight(HSSFCellStyle.BORDER_MEDIUM);
+
+        
+        
+        style2.setBorderBottom(HSSFCellStyle.BORDER_MEDIUM);
+        style2.setBorderLeft(HSSFCellStyle.BORDER_MEDIUM);
+        style2.setBorderRight(HSSFCellStyle.BORDER_MEDIUM);
+
+
+        center_text.setBorderBottom(HSSFCellStyle.BORDER_MEDIUM);
+        center_text.setBorderLeft(HSSFCellStyle.BORDER_MEDIUM);
+        center_text.setBorderRight(HSSFCellStyle.BORDER_MEDIUM);
+        center_text.setAlignment(headerStyle.ALIGN_CENTER);
         Font font1 = workbook.createFont();
         Font font2 = workbook.createFont();
         Font font3 = workbook.createFont();
@@ -84,7 +123,8 @@ public class AdminExcelBuilder extends AbstractExcelView {
        
         style2.setFont(font1);
         style3.setFont(font2);
-
+        style4.setFont(font2);
+        center_text.setFont(font1);
         // create header row
         HSSFRow header = sheet.createRow(0);
          
@@ -93,9 +133,9 @@ public class AdminExcelBuilder extends AbstractExcelView {
       
          
         header.createCell(1).setCellValue("RESULTS");
-        header.getCell(1).setCellStyle(style2);
+        header.getCell(1).setCellStyle(center_text);
         header.createCell(2).setCellValue("");
-        header.getCell(2).setCellStyle(style2);
+        header.getCell(2).setCellStyle(center_text);
          
         header.createCell(3).setCellValue("START");
         header.getCell(3).setCellStyle(style2);
@@ -108,11 +148,11 @@ public class AdminExcelBuilder extends AbstractExcelView {
         	my_applicant_start_number++;
        
         header.createCell(i).setCellValue("APP " + my_applicant_start_number);
-        header.getCell(i).setCellStyle(style2);
+        header.getCell(i).setCellStyle(center_text);
         
         i++;
         header.createCell(i).setCellValue("");
-        header.getCell(i).setCellStyle(style2);
+        header.getCell(i).setCellStyle(center_text);
         
         }
                
@@ -124,7 +164,7 @@ public class AdminExcelBuilder extends AbstractExcelView {
          
         header1.createCell(1).setCellValue("#OF APPS DONE");
         header1.getCell(1).setCellStyle(style3);
-        
+       
          
         header1.createCell(2).setCellValue("AVERAGE TIME");
         header1.getCell(2).setCellStyle(style3);
@@ -164,22 +204,24 @@ public class AdminExcelBuilder extends AbstractExcelView {
         }
     }
             aRow.createCell(0).setCellValue(aBook.getReg_username());
-            aRow.getCell(0).setCellStyle(style3);
+            aRow.getCell(0).setCellStyle(style4);
             aRow.createCell(count++).setCellValue(Applicant_count);
-            aRow.getCell(1).setCellStyle(style3);
+            aRow.getCell(1).setCellStyle(style4);
             aRow.createCell(count++).setCellValue(".36");
-            aRow.getCell(2).setCellStyle(style3);
+            aRow.getCell(2).setCellStyle(style4);
             aRow.createCell(count++).setCellValue("12-12-2016");
-            aRow.getCell(3).setCellStyle(style3);
+            aRow.getCell(3).setCellStyle(style4);
             aRow.createCell(count++).setCellValue("12323213");
-            aRow.getCell(4).setCellStyle(style3);
+            aRow.getCell(4).setCellStyle(style4);
             for (Verification_date aBook1 : listBooks22) {
             	
             		if(aBook1.getUsername().trim().equals(aBook.getReg_username().trim()) || aBook1.getUsername().trim() == aBook.getReg_username().trim() ||  aBook1.getUsername().trim().equals(aBook.getReg_username().trim())){
             	
             		aRow.createCell(count++).setCellValue(aBook1.getStart_date());
             		
-            		aRow.createCell(count++).setCellValue(aBook1.getEnd_date());            		
+            		aRow.createCell(count++).setCellValue(aBook1.getEnd_date());
+           
+            		
             }
         }
 
