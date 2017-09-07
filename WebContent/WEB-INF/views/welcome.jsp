@@ -84,13 +84,11 @@
       <td class="table-warning">${emp.applicant_status}</td>
       <td class="table-warning">${emp.no_of_transcripts}</td>
       <td class="table-warning">${emp.portal_name}</td>
-      <td class="table-warning"> <a href="edit_data/${emp.cas_id}" class="btn btn-primary a-btn-slide-text">
-        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-        <span><strong>Edit</strong></span>
-    </a>/<a href="delete_data/${emp.cas_id}" class="btn btn-primary a-btn-slide-text">
+      <td class="table-warning"> 
+          <button class="btn btn-success" data-toggle="modal" data-target="#myModal" contenteditable="false">Edit</button>/<a href="delete_data/${emp.cas_id}" class="btn btn-primary a-btn-slide-text">
        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
         <span><strong>Delete</strong></span>
-    </a></tr>
+    </a></td></tr>
      </c:forEach>
 
   </tbody>
@@ -244,8 +242,6 @@
 
 </div>
 
-
-
 <script>
 $(document).ready(function(){
     $("#myBtn").click(function(){
@@ -256,6 +252,30 @@ $(document).ready(function(){
             format: 'LT'
         });
     });
+    $(".btn[data-target='#myModal']").click(function() {
+        var columnHeadings = $("thead th").map(function() {
+                  return $(this).text();
+               }).get();
+        columnHeadings.pop();
+        var columnValues = $(this).parent().siblings().map(function() {
+                  return $(this).text();
+        }).get();
+   var modalBody = $('<div id="modalContent"></div>');
+   var modalForm = $('<form role="form" name="modalForm" action="putYourPHPActionHere.php" method="post"></form>');
+   $.each(columnHeadings, function(i, columnHeader) {
+        var formGroup = $('<div class="form-group"></div>');
+        formGroup.append('<label for="'+columnHeader+'">'+columnHeader+'</label>');
+        formGroup.append('<input class="form-control" name="'+columnHeader+i+'" id="'+columnHeader+i+'" value="'+columnValues[i]+'" />');
+        
+        modalForm.append(formGroup);
+   });
+   modalBody.append(modalForm);
+   $('.modal-body').html(modalBody);
+ });
+ $('.modal-footer .btn-primary').click(function() {
+    $('form[name="modalForm"]').submit();
+ 
+ });
 });
 </script>
 </body>
