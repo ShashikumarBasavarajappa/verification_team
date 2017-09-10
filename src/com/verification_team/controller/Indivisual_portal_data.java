@@ -18,6 +18,7 @@ import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.ss.util.RegionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.view.document.AbstractExcelView;
 
@@ -97,12 +98,15 @@ public class Indivisual_portal_data extends AbstractExcelView {
         int rowCount = 1;
 
 int shashi_count =0 ;
+for (Registration aBook1 : listBooks1) {
+		shashi_count =0 ;
 				for (Verification_date aBook : listBooks) {
 					String fooString2 = new String("verified");
+					if(aBook1.getReg_username().trim().equals(aBook.getUsername().trim()) || aBook1.getReg_username().trim() == aBook.getUsername().trim() || aBook1.getReg_username().trim().equals(aBook.getUsername().trim())){
 					if(aBook.getApplicant_status().trim().equals(fooString2) || aBook.getApplicant_status().trim() == fooString2 || aBook.getApplicant_status().trim().equals("verified")){
-						
-						HSSFRow aRow = sheet.createRow(rowCount++);
 						shashi_count++;
+						HSSFRow aRow = sheet.createRow(rowCount++);
+						
 						aRow.createCell(0).setCellValue("9-JUN-2017");
 						aRow.getCell(0).setCellStyle(style2);
 						aRow.createCell(1).setCellValue(shashi_count);
@@ -116,8 +120,9 @@ int shashi_count =0 ;
 						aRow.createCell(5).setCellValue(aBook.getApplicant_status());
 						aRow.getCell(5).setCellStyle(style2);
 					}
+					}
 				}
-				
+}		
 				
 				  HSSFRow header1 = sheet1.createRow(0);
 			         /*
@@ -145,14 +150,18 @@ int shashi_count =0 ;
 			        int rowCount1 = 1;
 
 			        int shashi_count1 =0 ;
+					for (Registration aBook1 : listBooks1) {
+						shashi_count1 = 0;
 			        				for (Verification_date aBook : listBooks) {
 			        					String fooString2 = new String("Un-Delivered");
+			        					if(aBook1.getReg_username().trim().equals(aBook.getUsername().trim()) || aBook1.getReg_username().trim() == aBook.getUsername().trim() || aBook1.getReg_username().trim().equals(aBook.getUsername().trim())){
 			        					if(aBook.getApplicant_status().trim().equals(fooString2) || aBook.getApplicant_status().trim() == fooString2 || aBook.getApplicant_status().trim().equals("Un-Delivered")){
 			        						HSSFRow aRow = sheet1.createRow(rowCount1++);
-			        						shashi_count++;
+			        						shashi_count1++;
+			        						System.out.println("===========================");
 			        						aRow.createCell(0).setCellValue("9-JUN-2017");
 			        						aRow.getCell(0).setCellStyle(style2);
-			        						aRow.createCell(1).setCellValue(shashi_count);
+			        						aRow.createCell(1).setCellValue(shashi_count1);
 			        						aRow.getCell(1).setCellStyle(style2);
 			        						aRow.createCell(2).setCellValue(aBook.getUsername());
 			        						aRow.getCell(2).setCellStyle(style2);
@@ -162,11 +171,9 @@ int shashi_count =0 ;
 			        						aRow.getCell(4).setCellStyle(style2);
 			        						aRow.createCell(5).setCellValue(aBook.getApplicant_status());
 			        						aRow.getCell(5).setCellStyle(style2);
-			        					}
-			        						
+			        	}		        						
+			 }			        				
 			        				}
-			        				
-
-    }
-
+					}
+     }
 }

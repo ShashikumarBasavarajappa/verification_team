@@ -82,12 +82,16 @@
           <span class="glyphicon glyphicon-download"></span> Download Todays Data
         </button>
       </a>
-      <div >
+      <br />
+      <br />
+      <br />
+      <div class="container">
+ <div class="row-fluid">
       		<h4> Download Indivisual portal works</h4>
-   
+   &nbsp;&nbsp;
    <form action="/${contextPath}/get_indivisual_portal_work" method="get"   >		
         <div class="form-group">
-                    <label for="form_email">Portal Name
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="form_email">Portal Name
                     <select name="portal_name">
                       <c:forEach items="${portal_name_list}" var="emp">
 					 			<option value="${emp.value_string }">${emp.value_string }</option>
@@ -96,8 +100,9 @@
                     <div class="help-block with-errors"></div>
                 </div>    
       </div>
-      	<button class="btn btn-primary" value="get_data_for_portal">get_data_for_portal</button>
+      	&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<button class="btn btn-primary" value="get_data_for_portal">Get Indivisual Portal Data</button>
       </form>
+	</div>
 	</div>
 </body>
 </html>
