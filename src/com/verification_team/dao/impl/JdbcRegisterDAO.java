@@ -10,6 +10,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import com.verification_team.dao.RegisterDAO;
+import com.verification_team.model.OptionEntry;
 import com.verification_team.model.Registration;
 import com.verification_team.model.Verification_date;
 
@@ -278,6 +279,110 @@ public class JdbcRegisterDAO  implements RegisterDAO{
 				} catch (SQLException e) {}
 				}
 }
+
+	}
+
+	@Override
+	public List<OptionEntry> get_option_set_values(int option_set_id) {
+		System.out.println("*********************i'm comming inside===============");
+		String sql = "SELECT * FROM OPTIONENTRY where option_set_id = ?";
+		
+		Connection conn = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, option_set_id);
+			//Verification_date vv = null;
+			List<OptionEntry> vv = new ArrayList<OptionEntry>();
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				
+				OptionEntry employee = new OptionEntry();
+			
+				employee.setValue_string(rs.getString("VALUE_STRING"));
+				employee.setOption_set_id(rs.getInt("OPTION_SET_ID"));
+				vv.add(employee);
+				/*
+				 vv =   new Verification_date(
+						rs.getString("USERNAME"),
+						rs.getString("CAS_ID"), 
+						rs.getString("START_DATE"),
+						rs.getString("END_DATE"),
+						rs.getString("APPLICANT_STATUS") 
+				);
+				*/
+			}
+			
+			rs.close();
+			ps.close();
+			System.out.println("******************" + vv.size());
+			return vv;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			if (conn != null) {
+				try {
+				conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+	}
+
+	@Override
+	public List<Verification_date> get_data_for_indivisual_portals(String portal_name) {
+		// TODO Auto-generated method stub
+		
+		System.out.println("*********************i'm comming inside===============");
+		String sql = "SELECT * FROM VERIFICATION_DATE WHERE portal_name = ? order by username asc";
+		
+		Connection conn = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, portal_name);
+			//Verification_date vv = null;
+			List<Verification_date> vv = new ArrayList<Verification_date>();
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				
+				Verification_date employee = new Verification_date();
+			
+				employee.setUsername(rs.getString("USERNAME"));
+				employee.setCas_id(rs.getString("CAS_ID"));
+				employee.setStart_date(rs.getString("START_DATE"));
+				employee.setEnd_date(rs.getString("END_DATE"));
+				employee.setApplicant_status(rs.getString("APPLICANT_STATUS"));
+				employee.setNo_of_transcripts(rs.getString("NO_OF_TRANSCRIPTS"));
+				employee.setPortal_name(rs.getString("PORTAL_NAME"));;
+				vv.add(employee);
+				/*
+				 vv =   new Verification_date(
+						rs.getString("USERNAME"),
+						rs.getString("CAS_ID"), 
+						rs.getString("START_DATE"),
+						rs.getString("END_DATE"),
+						rs.getString("APPLICANT_STATUS") 
+				);
+				*/
+			}
+			
+			rs.close();
+			ps.close();
+			System.out.println("******************" + vv.size());
+			return vv;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			if (conn != null) {
+				try {
+				conn.close();
+				} catch (SQLException e) {}
+			}
+		}
 
 	}
 

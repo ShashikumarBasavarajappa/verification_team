@@ -25,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.verification_team.dao.RegisterDAO;
 import com.verification_team.model.Book;
+import com.verification_team.model.OptionEntry;
 import com.verification_team.model.Registration;
 import com.verification_team.model.Verification_date;
 
@@ -82,6 +83,9 @@ public class AdminController {
 		
 
 		List<Verification_date> rego = regDao.verification_data_list(username);
+		// set the option entry value here
+		int portal_name_options = 1;
+		List<OptionEntry> portal_names = regDao.get_option_set_values(portal_name_options);
 
 		System.out.println("****************6666666666666666" +  username);
 		String staffname = username.trim();
@@ -89,6 +93,7 @@ public class AdminController {
 		if(username.trim().equals(fooString2) || username.trim() == fooString2 || username.trim().equals("ladmin")){
 			ModelAndView model = new ModelAndView("admin_jsp");
 			model.addObject("main_user_name", username);
+			model.addObject("portal_name_list", portal_names);
 		    model.addObject("verification_data", rego);
 
 			return model;
@@ -96,12 +101,10 @@ public class AdminController {
 		else{
 			ModelAndView model = new ModelAndView("welcome");
 			model.addObject("main_user_name", username);
+			model.addObject("portal_name_list", portal_names);
 		    model.addObject("verification_data", rego);
-
 			return model;
 		}
-
-
 	}
 
 	@RequestMapping(value="/submit_my_data", method = RequestMethod.POST)
@@ -176,6 +179,22 @@ public class AdminController {
 
 	  	rr.addAttribute("username", username);
 		return "redirect:/admin_welcomepage";
+	
+		}
+		
+		@RequestMapping(value="/get_indivisual_portal_work",method = RequestMethod.GET)
+		public ModelAndView get_indivisual_portal_work(@ModelAttribute("Verification_date") Verification_date verification_date,HttpSession session,HttpServletRequest request, HttpServletResponse response, RedirectAttributes rr) throws ServletRequestBindingException {
+
+			//return new ModelAndView("AnimalListExcel", "animalList", animalList);
+			///String username  =  req.getParameter("username");
+	      String portal_name=verification_date.getPortal_name();
+			 List<Verification_date> regoe2 = regDao.get_data_for_indivisual_portals(portal_name);
+			 List<Registration> regoe = regDao.verification_employees_data_list();
+		// return a view which will be resolved by an excel view resolver
+	    ModelAndView model = new ModelAndView("indivisual_portal_name");
+		model.addObject("listBooks", regoe2);
+		model.addObject("listBooks1", regoe);
+		return model;
 	
 		}
 

@@ -201,7 +201,7 @@
                 <label for="form_status">Applicant Status</label>
                     <select name="applicant_status">
 					  <option value="verified">verified</option>
-					  <option value="not verified">Un-Delivered</option>
+					  <option value="Un-Delivered">Un-Delivered</option>
 					</select>
 					<div class="help-block with-errors"></div>
                 </div>
@@ -218,7 +218,11 @@
 			<div class="col-md-6">
                 <div class="form-group">
                     <label for="form_email">Portal Name
-                    <input id="form_email" name="portal_name" class="form-control" placeholder="Please enter your Portal Name *" >
+                    <select name="portal_name">
+                      <c:forEach items="${portal_name_list}" var="emp">
+					 			<option value="${emp.value_string }">${emp.value_string }</option>
+					       </c:forEach>
+					</select>
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
