@@ -1,9 +1,14 @@
 package com.verification_team.dao.impl;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,9 +96,19 @@ public class JdbcRegisterDAO  implements RegisterDAO{
 	@Override
 	public void insert_verification_data(Verification_date verification_data) {
 		// TODO Auto-generated method stub
-                           																																														
+
+
+    	//DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+    	//LocalDate localDate = LocalDate.now();
+    	
+		DateTimeFormatter df = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDate todaysDate = LocalDate.now();
+     
+    	
+        String str2 = df.format(todaysDate);
+        
 		String sql = "INSERT INTO VERIFICATION_DATE " +
-				"(USERNAME,CAS_ID, START_DATE, END_DATE,APPLICANT_STATUS,NO_OF_TRANSCRIPTS,PORTAL_NAME) VALUES (?,?, ?, ?,?,?,?)";
+				"(USERNAME,CAS_ID, START_DATE, END_DATE,APPLICANT_STATUS,NO_OF_TRANSCRIPTS,PORTAL_NAME, created_on) VALUES (?, ?, ?, ?,?,?,?,?)";
 		Connection conn = null;
 
 		try {
@@ -106,6 +121,7 @@ public class JdbcRegisterDAO  implements RegisterDAO{
 			ps.setString(5, verification_data.getApplicant_status());
 			ps.setString(6, verification_data.getNo_of_transcripts());
 			ps.setString(7, verification_data.getPortal_name());
+			ps.setString(8, str2);
 			ps.executeUpdate();
 			ps.close();
 
@@ -149,7 +165,8 @@ public class JdbcRegisterDAO  implements RegisterDAO{
 					employee.setEnd_date(rs.getString("END_DATE"));
 					employee.setApplicant_status(rs.getString("APPLICANT_STATUS"));
 					employee.setNo_of_transcripts(rs.getString("NO_OF_TRANSCRIPTS"));
-					employee.setPortal_name(rs.getString("PORTAL_NAME"));;
+					employee.setPortal_name(rs.getString("PORTAL_NAME"));
+					employee.setCreated_on(rs.getString("created_on"));
 					vv.add(employee);
 					/*
 					 vv =   new Verification_date(
@@ -384,6 +401,12 @@ public class JdbcRegisterDAO  implements RegisterDAO{
 			}
 		}
 
+	}
+
+	@Override
+	public List<OptionEntry> get_opton_entry_data_portal() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

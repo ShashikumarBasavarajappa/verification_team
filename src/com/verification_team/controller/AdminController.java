@@ -174,6 +174,7 @@ public class AdminController {
 			System.out.println("9999999999999999999999999999999" + username);
 			//return new ModelAndView("AnimalListExcel", "animalList", animalList);
 			///String username  =  req.getParameter("username");
+			regDao.get_opton_entry_data_portal();	
 	      regDao.delete_verification_data(cas_id);
 
 
@@ -194,6 +195,17 @@ public class AdminController {
 	    ModelAndView model = new ModelAndView("indivisual_portal_name");
 		model.addObject("listBooks", regoe2);
 		model.addObject("listBooks1", regoe);
+		return model;
+	
+		}
+		
+		
+		@RequestMapping(value="/get_portal_list",method = RequestMethod.GET)
+		public ModelAndView get_portal_list(@ModelAttribute("OptionEntry") OptionEntry option_entry,HttpSession session,HttpServletRequest request, HttpServletResponse response, RedirectAttributes rr) throws ServletRequestBindingException {
+
+			//return new ModelAndView("AnimalListExcel", "animalList", animalList);
+			///String username  =  req.getParameter("username");
+	         ModelAndView model = new ModelAndView("indivisual_portal_name");
 		return model;
 	
 		}

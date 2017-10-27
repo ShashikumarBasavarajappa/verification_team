@@ -7,37 +7,40 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Welcome to Spring Web MVC project</title>
+          <link type="text/css" href="<%=request.getContextPath() %>/resources/css/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+            <link type="text/css" href="<%=request.getContextPath() %>/resources/css/timepicker.css" rel="stylesheet" />
+              <link type="text/css" href="<%=request.getContextPath() %>/resources/css/background.css" rel="stylesheet"/>
+              <link type="text/css" href="<%=request.getContextPath() %>/resources/css/font-awesome.min.css" rel="stylesheet"/>
+              <link type="text/css" href="<%=request.getContextPath() %>/resources/css/popup.css" rel="stylesheet"/>
+            <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery.min.js"></script>
+            <script src="<%=request.getContextPath() %>/resources/css/bootstrap/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/bootstrap-timepicker.min.js"></script>
+                 <script src="<%=request.getContextPath() %>/resources/js/jquery-ui-1.9.2.custom.min.js"></script>
+                 
+    <script src="<%=request.getContextPath() %>/resources/js/welcome.js"></script>
+
+
+    <script src="<%=request.getContextPath() %>/resources/js/popup.js"></script>
+                 
+
     <!--
     <spring:url value="/resources/bootstrap/css/bootstrap.min" var="crunchifyCSS" />
         <spring:url value="/resources/bootstrap/js/bootstrap.min" var="crunchifyJS" />
     -->
-    <link type="text/css" href="<%=request.getContextPath() %>/resources/css/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-
-    <link type="text/css" href="<%=request.getContextPath() %>/resources/css/login.css" rel="stylesheet"/>
-    <link type="text/css" href="<%=request.getContextPath() %>/resources/css/background.css" rel="stylesheet"/>
-    <link type="text/css" href="<%=request.getContextPath() %>/resources/css/font-awesome.min.css" rel="stylesheet"/>
-<link type="text/css" href="<%=request.getContextPath() %>/resources/css/popup.css" rel="stylesheet"/>
-<link type="text/css" href="<%=request.getContextPath() %>/resources/css/bootstrap-datetimepicker.css" rel="stylesheet"/>
-<link type="text/css" href="<%=request.getContextPath() %>/resources/css/font-awesome.min.css" rel="stylesheet"/>
-
-    <script src="<%=request.getContextPath() %>/resources/js/jquery-1.8.3.min.js"></script>
-        <script src="<%=request.getContextPath() %>/resources/css/bootstrap/js/bootstrap.min.js"></script>
-      <script src="<%=request.getContextPath() %>/resources/js/jquery-ui-1.9.2.custom.min.js"></script>
-
-        <script src="<%=request.getContextPath() %>/resources/js/bootstrap-datetimepicker.js"></script>
+<!--    <link type="text/css" href="<%=request.getContextPath() %>/resources/css/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 
 
 
-    <script src="<%=request.getContextPath() %>/resources/js/welcome.js"></script>
-
-    <script src="<%=request.getContextPath() %>/resources/js/jquery.min.js"></script>
-    <script src="<%=request.getContextPath() %>/resources/js/popup.js"></script>
 
 
+
+-->
     </head>
 
 <body>
 
+
+<div class="container">
 <c:set var="contextPath" value="verification_team"/>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -163,7 +166,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title"><strong><b>CAS VRIFICATION APPLICANT</b></strong></h4>
+          <h4 class="modal-title"><strong><b>CAS VERIFICATION APPLICANT</b></strong></h4>
         </div>
         <div class="modal-body">
           <form id="Applicant_submit" method="post" action="submit_my_data" role="form">
@@ -176,33 +179,39 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="form_name">CAS ID </label>
-                    <input id="form_name" type="text" name="cas_id" class="form-control" placeholder="Please	 enter your CAS_ID" required="required" data-error="Please enter the CAS_ID">
+                    <input id="form_name" type="text" name="cas_id" class="form-control"  placeholder="Please enter your CAS_ID" required="required" >
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="form-group">
-                    <label for="form_lastname">Start Time </label> <span class="glyphicon glyphicon-time"></span>
-                    <input id="form_lastname" type="text" name="start_date" class="form-control" placeholder="Please enter your start date *" >
-                    <div class="help-block with-errors"></div>
-                </div>
+ 	          <div class="form-group">
+ 	          <label for="form_status">Start Time</label>
+                <div class="input-group bootstrap-timepicker timepicker">
+                <input id="timepicker1" name="start_date" type=" text" class="form-control input-small">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
             </div>
+			</div>
+        </div>
         </div>
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group">
-                    <label for="form_email">End TIme <span class="glyphicon glyphicon-time"></span></label>
-                    <input id="form_email" name="end_date" class="form-control" placeholder="Please enter your end date *" >
-                    <div class="help-block with-errors"></div>
-                </div>
+      <div class="form-group">
+      	<label for="form_status">END  TIME</label>
+                <div class="input-group bootstrap-timepicker timepicker">
+                <input id="timepicker2" name="end_date" type=" text" class="form-control input-small">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+            </div>
+			</div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                 <label for="form_status">Applicant Status</label>
-                    <select name="applicant_status">
+                <div class="input-group">
+                    <select name="applicant_status"  class="selectpicker form-control">
 					  <option value="verified">verified</option>
 					  <option value="Un-Delivered">Un-Delivered</option>
 					</select>
+					</div>
 					<div class="help-block with-errors"></div>
                 </div>
             </div>
@@ -217,8 +226,8 @@
             </div>
 			<div class="col-md-6">
                 <div class="form-group">
-                    <label for="form_email">Portal Name
-                    <select name="portal_name">
+                    <label for="form_email">Portal Name</label>
+                    <select name="portal_name"  class="selectpicker form-control">
                       <c:forEach items="${portal_name_list}" var="emp">
 					 			<option value="${emp.value_string }">${emp.value_string }</option>
 					       </c:forEach>
@@ -245,7 +254,11 @@
   </div>
 
 </div>
-
+</div>
+ <script type="text/javascript">
+               $('#timepicker1').timepicker();
+               $('#timepicker2').timepicker();
+ </script>
 <script>
 $(document).ready(function(){
     $("#myBtn").click(function(){
@@ -257,6 +270,7 @@ $(document).ready(function(){
         });
     });
     $(".btn[data-target='#myModal']").click(function() {
+    	alert("you clicked me finally");
         var columnHeadings = $("thead th").map(function() {
                   return $(this).text();
                }).get();
@@ -276,10 +290,7 @@ $(document).ready(function(){
    modalBody.append(modalForm);
    $('.modal-body').html(modalBody);
  });
- $('.modal-footer .btn-primary').click(function() {
-    $('form[name="modalForm"]').submit();
  
- });
 });
 </script>
 </body>

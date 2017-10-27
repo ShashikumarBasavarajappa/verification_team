@@ -15,6 +15,7 @@ public interface RegisterDAO {
 	public void insert_verification_data(Verification_date verification_data);
 	public List<Verification_date> verification_data_list(String username);
 	public List<Registration> verification_employees_data_list();
+	public List<OptionEntry> get_opton_entry_data_portal();
 	public List<Verification_date> verification_employees_data_list_data();
 	public void delete_verification_data(String cas_id);
 	public List<OptionEntry> get_option_set_values(int option_set_id);

@@ -66,7 +66,7 @@
         <li><a href="#"><i class="fa fa-tags"></i> Profile</a></li>
         <li><a href="#"><i class="fa fa-history"></i> Privious Data History</a></li>
         <li><a href="#"><i class="fa fa-lock"></i> Change Password</a></li>
-
+		<li><a href="/${contextPath}/get_portal_list"><i class="fa fa-lock"></i> Update Portal</a></li>
     </ul>
 </div><!-- /span-3 -->
 <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12">

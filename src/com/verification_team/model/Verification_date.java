@@ -1,5 +1,9 @@
 package com.verification_team.model;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Verification_date {
 	
 	String username;
@@ -15,7 +19,9 @@ public class Verification_date {
 	String applicant_status;
 	String no_of_transcripts;
 	String  portal_name;
+	String created_on;
 	
+
 	public String getNo_of_transcripts() {
 		return no_of_transcripts;
 	}
@@ -66,9 +72,16 @@ public class Verification_date {
 		this.applicant_status = applicant_status;
 	}	
 	
+
+	public String getCreated_on() {
+		return created_on;
+	}
+	public void setCreated_on(String created_on) {
+		this.created_on = created_on;
+	}
 	@Override
 	public String toString() {
 		return "Verification_date [username=" + username +  ", cas_id=" + cas_id +  ", start_date=" + start_date +  ", end_date=" + end_date  + ", applicant_status=" + applicant_status  
-				+", no_of_transcripts=" + no_of_transcripts  + ", portal_name=" + portal_name  +  "]";
+				+", no_of_transcripts=" + no_of_transcripts  + ", portal_name=" + portal_name  +  ", created_on=" + created_on  +  "]";
 	}
 }
